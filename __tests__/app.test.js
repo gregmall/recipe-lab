@@ -181,9 +181,9 @@ describe('lab routes', () => {
   it('gets a log by id', async() => {
     const log = await Log.insert({
       recipeId: '5',
-        dateOfEvent: '03-25-21',
-        notes: 'it was delicious',
-        rating: '4.5 stars'
+      dateOfEvent: '03-25-21',
+      notes: 'it was delicious',
+      rating: '4.5 stars'
 
 
     });
@@ -193,7 +193,37 @@ describe('lab routes', () => {
       expect(response.body).toEqual(log);
 
 
-  })
+  });
+  it('updates a log by id', async() => {
+    const log = await Log.insert({
+      recipeId: '5',
+      dateOfEvent: '03-25-21',
+      notes: 'it was delicious',
+      rating: '4.5 stars'
+
+
+    });
+
+    return request(app)
+      .put(`/api/v1/log/${log.id}`)
+      .send({
+        recipeId: '5',
+        dateOfEvent: '03-25-21',
+        notes: 'it was ok',
+        rating: '3 stars'
+      })
+      .then(res => {
+        expect(res.body).toEqual({
+          id: expect.any(String),
+          recipeId: '5',
+          dateOfEvent: '03-25-21',
+          notes: 'it was ok',
+          rating: '3 stars'
+
+        });
+      });
+
+  });
 
 
 
