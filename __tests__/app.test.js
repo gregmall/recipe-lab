@@ -20,8 +20,17 @@ describe('recipe-lab routes', () => {
           'mix ingredients',
           'put dough on cookie sheet',
           'bake for 10 minutes'
+        ],
+        ingredients:
+        [
+          { flour: { amount: 2, measurement: 'cups' } },
+          { sugar: { amount: 1, measurement: 'cup' } } ,
+          { chocolate: { amount: 2, measurement: 'tablespoon' } }
+
         ]
+       
       });
+     
     expect(res.body).toEqual({
       id: expect.any(String),
       name: 'cookies',
@@ -30,7 +39,14 @@ describe('recipe-lab routes', () => {
         'mix ingredients',
         'put dough on cookie sheet',
         'bake for 10 minutes'
+      ],
+      ingredients:
+      [
+        { flour: { amount: 2, measurement: 'cups' } },
+        { sugar: { amount: 1, measurement: 'cup' } } ,
+        { chocolate: { amount: 2, measurement: 'tablespoon' } }
       ]
+     
     });
   });
 
@@ -59,6 +75,13 @@ describe('recipe-lab routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients:
+      [
+        { flour: { amount: 2, measurement: 'cups' } },
+        { sugar: { amount: 1, measurement: 'cup' } } ,
+        { chocolate: { amount: 2, measurement: 'tablespoon' } }
+      ]
+      
     });
 
     const response = await request(app)
@@ -77,6 +100,12 @@ describe('recipe-lab routes', () => {
         'put dough on cookie sheet',
         'bake for 10 minutes'
       ],
+      ingredients:
+      [
+        { flour: { amount: 2, measurement: 'cups' } },
+        { sugar: { amount: 1, measurement: 'cup' } } ,
+        { chocolate: { amount: 2, measurement: 'tablespoon' } }
+      ]
     });
 
     return request(app)
@@ -88,6 +117,12 @@ describe('recipe-lab routes', () => {
           'mix ingredients',
           'put dough on cookie sheet',
           'bake for 10 minutes'
+        ],
+        ingredients:
+        [
+          { flour: { amount: 2, measurement: 'cups' } },
+          { sugar: { amount: 1, measurement: 'cup' } } ,
+          { chocolate: { amount: 3, measurement: 'tablespoon' } }
         ]
       })
       .then(res => {
@@ -99,6 +134,12 @@ describe('recipe-lab routes', () => {
             'mix ingredients',
             'put dough on cookie sheet',
             'bake for 10 minutes'
+          ],
+          ingredients:
+          [
+            { flour: { amount: 2, measurement: 'cups' } },
+            { sugar: { amount: 1, measurement: 'cup' } } ,
+            { chocolate: { amount: 3, measurement: 'tablespoon' } }
           ]
         });
       });
