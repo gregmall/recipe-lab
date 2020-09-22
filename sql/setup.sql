@@ -1,7 +1,16 @@
 DROP TABLE IF EXISTS recipes;
+DROP TABLE IF EXISTS log;
 
 CREATE TABLE recipes (
   id BIGINT GENERATED ALWAYS AS IDENTITY,
   name TEXT NOT NULL,
   directions TEXT[]
+);
+
+CREATE TABLE log (
+  id BIGINT GENERATED ALWAYS AS IDENTITY,
+  recipe_id BIGINT NOT NULL,
+  date_of_event TEXT NOT NULL,
+  notes TEXT,
+  rating TEXT
 );
