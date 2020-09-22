@@ -116,7 +116,7 @@ describe('recipe-lab routes', () => {
     });
 
     const response = await request(app)
-      .delete(`/api/v1/recipes/${recipe.id}`)
+      .delete(`/api/v1/recipes/${recipe.id}`);
 
       expect(response.body).toEqual(recipe);
   });
@@ -224,9 +224,18 @@ describe('lab routes', () => {
       });
 
   });
+  it('deletes a log by id', async() => {
+    const log = await Log.insert({
+      recipeId: '5',
+      dateOfEvent: '03-25-21',
+      notes: 'it was delicious',
+      rating: '4.5 stars'
+    });
+    const response = await request(app)
+      .delete(`/api/v1/log/${log.id}`);
 
-
-
+      expect(response.body).toEqual(log);
+  });
 
 
 });
