@@ -178,6 +178,22 @@ describe('lab routes', () => {
       });
 
   });
+  it('gets a log by id', async() => {
+    const log = await Log.insert({
+      recipeId: '5',
+        dateOfEvent: '03-25-21',
+        notes: 'it was delicious',
+        rating: '4.5 stars'
+
+
+    });
+    const response = await request(app)
+      .get(`/api/v1/log/${log.id}`);
+
+      expect(response.body).toEqual(log);
+
+
+  })
 
 
 
