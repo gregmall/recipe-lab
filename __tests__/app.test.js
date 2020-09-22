@@ -52,7 +52,7 @@ describe('recipe-lab routes', () => {
   });
 
   it('gets a recipe by id', async() => {  
-    const recipes = await Recipe.insert({
+    const recipe = await Recipe.insert({
       name: 'cookies',
       directions: [
         'preheat oven to 375',
@@ -63,14 +63,11 @@ describe('recipe-lab routes', () => {
     });
 
     const response = await request(app)
-      .get(`/api/v1/recipes/${recipes.id}`);
+      .get(`/api/v1/recipes/${recipe.id}`);
 
-      expect(response.body).toEqual(recipes);
+      expect(response.body).toEqual(recipe);
 
-
-
-
-  });
+ });
 
   it('updates a recipe by id', async() => {
     const recipe = await Recipe.insert({
@@ -106,5 +103,22 @@ describe('recipe-lab routes', () => {
           ]
         });
       });
+  });
+
+  it('deletes a recipe by id', async() => {
+    const recipe = await Recipe.insert({
+      name: 'cookies',
+      directions: [
+        'preheat oven to 375',
+        'mix ingredients',
+        'put dough on cookie sheet',
+        'bake for 10 minutes'
+      ],
+    });
+
+    const response = await request(app)
+      .delete(`/api/v1/recipes/${recipe.id}`)
+
+      expect(response.body).toEqual(recipe);
   });
 });
